@@ -6,10 +6,10 @@ lintian-upstream-metadata
  
  
  
- Usage
- =====
+Usage
+=====
  
  
- <pre>
- lintian --pedantic --include-dir=/path/to/lintian-upstream-metadata changesfile
+<pre>
+lintian --pedantic --include-dir=/path/to/lintian-upstream-metadata changesfile
 </pre>
