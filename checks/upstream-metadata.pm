@@ -28,12 +28,12 @@ use Lintian::Tags qw(tag);
 
 use YAML;
 
-my @allowed_fields=("Archive","Bug-Database","Bug-Submit","Cite-As","Changelog",\
-		    "Contact","Donation","FAQ","Funding","Gallery","Name","Homepage",\
-		    "Other-References","Reference","Reference-Author","Reference-Booktitle",\
-		    "Reference-DOI","Reference-Eprint","Reference-Journal","Reference-Number",\
-		    "Reference-Pages","Reference-PMID","Reference-Title","Reference-Type",\
-		    "Reference-URL","Reference-Volume","Reference-Year","Reference-Debian-package",\
+my @allowed_fields=("Archive","Bug-Database","Bug-Submit","Cite-As","Changelog",
+		    "Contact","Donation","FAQ","Funding","Gallery","Name","Homepage",
+		    "Other-References","Reference","Reference-Author","Reference-Booktitle",
+		    "Reference-DOI","Reference-Eprint","Reference-Journal","Reference-Number",
+		    "Reference-Pages","Reference-PMID","Reference-Title","Reference-Type",
+		    "Reference-URL","Reference-Volume","Reference-Year","Reference-Debian-package",
 		    "Registration","Repository","Repository-Browse","Screenshots","Watch","Webservice");
 
 sub run {
