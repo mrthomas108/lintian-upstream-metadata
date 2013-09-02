@@ -3,8 +3,7 @@ Author: Simon Kainz <simon@familiekainz.at>
 Abbrev: usmd
 Type: source
 Needs-Info: debfiles
-Info: This script checks if the upstream metadata file exists and if so,
- if it is valid.
+Info: Checks for erroneous, missing or invalid debian/upstream files.
 
 Tag: debian-upstream-file-is-missing
 Severity: pedantic
