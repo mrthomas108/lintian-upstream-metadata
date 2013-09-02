@@ -11,5 +11,5 @@ Usage
  
  
 <pre>
-lintian --pedantic --include-dir=/path/to/lintian-upstream-metadata changesfile
+lintian --pedantic --include-dir=/path/to/lintian-upstream-metadata --profile debain/metadata sourcepackage.changes
 </pre>
