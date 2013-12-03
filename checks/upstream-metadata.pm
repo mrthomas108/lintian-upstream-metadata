@@ -26,7 +26,7 @@ use warnings;
 use Lintian::Collect;
 use Lintian::Tags qw(tag);
 
-use Test::More tests =>1;
+use Test::More;
 use Test::YAML::Valid;
 
 use YAML;
