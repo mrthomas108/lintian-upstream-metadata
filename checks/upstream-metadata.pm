@@ -26,6 +26,9 @@ use warnings;
 use Lintian::Collect;
 use Lintian::Tags qw(tag);
 
+use Test::More tests =>1;
+use Test::YAML::Valid;
+
 use YAML;
 
 my @allowed_fields=("Archive","Bug-Database","Bug-Submit","Cite-As","Changelog",
@@ -48,6 +51,10 @@ sub run {
     my $string;
     my $allowed_fields_hash;
     my @invalid_fields;
+
+    my $test_builder = Test::More->builder;
+    $test_builder->output("/dev/null");
+    $test_builder->failure_output("/dev/null");
     
     if (! -f $ufile) {
 	tag 'debian-upstream-file-is-missing' unless ($info->native);
@@ -56,20 +63,22 @@ sub run {
     
 #check if file is valid YAML
     
+    yaml_file_ok($ufile);
+    done_testing();
+
+    my $test_result=$test_builder->{Test_Results}[0]{ok};
+
+    if ($test_result == 0)
+    {
+	tag 'debian-upstream-file-is-invalid';
+	return;
+    }
+    
     open my $fh, '<',$ufile;
     my $yaml_string=join("",<$fh>);
     $yaml_string =~ s/^\s+\Z//m;
     $yaml_string.="\n";
     close($fh);
-    
-    
-# i have to use eval() here, because YAML::Load issues as die() on error
-    
-    eval { YAML::Load($yaml_string);}; if ($@)
-    {
-	tag 'debian-upstream-file-is-invalid';
-	return;
-    }
     
 # ok, file is valid YAML, so check if there are unknown fields:
     foreach my $a (@allowed_fields)
