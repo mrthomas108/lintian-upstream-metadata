@@ -11,12 +11,12 @@ Certainty: certain
 Info: Debian/upstream file is missing.
 
 Tag: debian-upstream-file-is-invalid
-Severity: pedantic
+Severity: normal
 Certainty: certain
 Info: The debian/upstream file contains invalid YAML data.
 
 Tag: debian-upstream-file-invalid-field
-Severity: pedantic
+Severity: normal
 Certainty: certain
 Info: The debian/upstream file contains unknown fields.
 Ref: https://wiki.debian.org/UpstreamMetadata
