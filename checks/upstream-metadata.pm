@@ -1,4 +1,3 @@
-
 # upstream-metadata -- lintian check script -*- perl -*-
 #
 # Copyright (C) 2013 Simon Kainz <simon@familiekainz.at>
@@ -31,6 +30,7 @@ use Test::YAML::Valid;
 
 use YAML qw(Load LoadFile);
 
+# This list is taken from https://wiki.debian.org/UpstreamMetadata
 my @allowed_fields=("Archive","Bug-Database","Bug-Submit","Cite-As","Changelog",
 		    "Contact","Donation","FAQ","Funding","Gallery","Name","Homepage",
 		    "Other-References","Reference","Reference-Author","Reference-Booktitle",
@@ -61,8 +61,8 @@ sub run {
 	return;
     }
     
-#check if file is valid YAML
-    
+    # check if file is valid YAML
+    # testing with Test::YAML::Valid first
 
     yaml_file_ok($ufile);
     done_testing();
@@ -71,6 +71,8 @@ sub run {
 
     if ($test_result == 0)
     {
+	# try to get the Error details
+
 	eval {LoadFile($ufile);};
 	my $error_detail="Unknown error";
 	if ($@)
