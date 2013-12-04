@@ -29,7 +29,7 @@ use Lintian::Tags qw(tag);
 use Test::More;
 use Test::YAML::Valid;
 
-use YAML;
+use YAML qw(Load LoadFile);
 
 my @allowed_fields=("Archive","Bug-Database","Bug-Submit","Cite-As","Changelog",
 		    "Contact","Donation","FAQ","Funding","Gallery","Name","Homepage",
@@ -63,6 +63,7 @@ sub run {
     
 #check if file is valid YAML
     
+
     yaml_file_ok($ufile);
     done_testing();
 
@@ -70,7 +71,16 @@ sub run {
 
     if ($test_result == 0)
     {
-	tag 'debian-upstream-file-is-invalid';
+	eval {LoadFile($ufile);};
+	my $error_detail="Unknown error";
+	if ($@)
+	{
+	    my @errlines=split(/\n/,$@);
+    
+	    $error_detail=$errlines[0].",".$errlines[1].",".$errlines[2];
+	}
+
+	tag 'debian-upstream-file-is-invalid',$error_detail;
 	return;
     }
     
